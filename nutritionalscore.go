@@ -41,6 +41,42 @@ type NutritionalData struct {
 	IsWater             bool
 }
 
+func EnergyFromKcal(kcal float64) EnergyKJ {
+	return EnergyKJ(kcal * 4.184)
+}
+
+func SodiumFromSalt(saltMg float64) SodiumMilligram {
+	return SodiumMilligram(saltMg / 2.5)
+}
+
+func (eKJ EnergyKJ) GetPoints(scoreType ScoreType) int {
+
+}
+
+func (sGram SugarGram) GetPoints(scoreType ScoreType) int {
+
+}
+
+func (sFAcids SaturatedFattyAcids) GetPoints(scoreType ScoreType) int {
+
+}
+
+func (pGram ProteinGram) GetPoints(scoreType ScoreType) int {
+
+}
+
+func (sMilligram SodiumMilligram) GetPoints(scoreType ScoreType) int {
+
+}
+
+func (fPercent FruitsPercent) GetPoints(scoreType ScoreType) int {
+
+}
+
+func (fGram FibreGram) GetPoints(scoreType ScoreType) int {
+
+}
+
 func GetNutritionalScore(data NutritionalData, scoreType ScoreType) NutritionalScore {
 
 	value := 0
