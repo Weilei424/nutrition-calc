@@ -15,4 +15,5 @@ func main() {
 	}, Food)
 
 	fmt.Printf("Nutritional Score: %d\n", nutriScore.Value)
+	fmt.Printf("NutriScore: %s\n", nutriScore.GetNutriScore())
 }
