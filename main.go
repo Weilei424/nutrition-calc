@@ -4,14 +4,14 @@ import "fmt"
 
 func main() {
 
-	nutriScore := GetNuTritionalScore(NutritionalData{
-		Energy:              EnergyFromKcal(),
-		Sugar:               SugarGram(0),
-		SaturatedFattyAcids: SaturatedFattyAcids(),
-		Sodium:              SodiumMilligram(),
-		Fruits:              FruitsPercent(),
-		Fibre:               FibreGram(),
-		Protein:             ProteinGram(),
+	nutriScore := GetNutritionalScore(NutritionalData{
+		Energy:              EnergyFromKcal(0),
+		Sugar:               SugarGram(10),
+		SaturatedFattyAcids: SaturatedFattyAcids(2),
+		Sodium:              SodiumMilligram(500),
+		Fruits:              FruitsPercent(60),
+		Fibre:               FibreGram(4),
+		Protein:             ProteinGram(2),
 	}, Food)
 
 	fmt.Printf("Nutritional Score: %d\n", nutriScore.Value)
