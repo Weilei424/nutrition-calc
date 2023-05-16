@@ -16,6 +16,8 @@ type NutritionalScore struct {
 	ScoreType ScoreType
 }
 
+var scoreToLetter = []string{"A", "B", "C", "D", "E"}
+
 type EnergyKJ float64
 
 type SugarGram float64
@@ -137,6 +139,16 @@ func GetNutritionalScore(data NutritionalData, scoreType ScoreType) NutritionalS
 
 		negative = data.Energy.GetPoints(scoreType) + data.Sugar.GetPoints(scoreType) + data.SaturatedFattyAcids.GetPoints(scoreType) + data.Sodium.GetPoints(scoreType)
 		positive = fruitPoints + fibrePoints + data.Protein.GetPoints(scoreType)
+
+		if scoreType == Cheese {
+			value = negative - positive
+		} else {
+			if negative >= 11 && fruitPoints < 5 {
+				value = negative - positive - fruitPoints
+			} else {
+				value = negative - positive
+			}
+		}
 	}
 
 	return NutritionalScore{
@@ -159,5 +171,13 @@ func getPointsFromRange(v float64, steps []float64) int {
 }
 
 func (ns NutritionalScore) GetNutriScore() string {
+	if ns.ScoreType == Food {
+		return scoreToLetter[getPointsFromRange(float64(ns.Value), []float64{18, 10, 2, -1})]
+	}
 
+	if ns.ScoreType == Water {
+		return scoreToLetter[0]
+	}
+
+	return scoreToLetter[getPointsFromRange(float64(ns.Value), []float64{9, 5, 1, -2})]
 }
